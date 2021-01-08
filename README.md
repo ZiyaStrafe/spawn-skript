@@ -7,7 +7,7 @@
   </tr>
   <tr>
     <td>0.0.1 ALPHA</td>
-    <td><a href="youtube.com">🔗</a></td>
+    <td><a href="www.youtube.com"></a></td>
   </tr>
 </table>
 
