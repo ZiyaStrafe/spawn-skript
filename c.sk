@@ -1,0 +1,12 @@
+command /hub:
+	aliases: /spawn, /lobby, /lobi
+	trigger:
+		teleport player to {spawn}
+
+command /sethub:
+	permission: hub.admin
+	permission message: &4&lUYARI &8&l» &cBu Komutu kullanabilmek için Gerekli İzne Sahip değilsin!
+	aliases: /setspawn, /setlobby, /setlobi
+	trigger:
+		set {spawn} to location of player
+		send "&aBaşarıyla Spawn Noktası ayarlandı." to player
