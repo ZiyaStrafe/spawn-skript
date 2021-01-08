@@ -2,7 +2,7 @@
 
 <table align="center">
   <tr>
-    <th width="400px">Versiyon</th>
+    <th width="50px">Versiyon</th>
     <th>İndir</th>
   </tr>
   <tr>
