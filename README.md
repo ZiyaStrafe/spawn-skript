@@ -1,3 +1,3 @@
-# Spawn Skript
+# Spawn Skript <p>hihi</p>
 
-Burada bulunan Spawn Skript sayesinde kendi Doğum Noktanızı ayarlayabileceksiniz.
+Bu bir Doğma Noktası ayarlamak için kullanılan bir Skript'tir, zaman ilerledikçe daha da üstüne daha iyileri konularak *Geliştirelecek*, *Özelleştirilebilir* ve *Kaliteli* bir Skript olması amaçlanmış olup bu yola başlanmıştır.
