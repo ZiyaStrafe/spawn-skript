@@ -2,8 +2,8 @@
 
 <table align="center">
   <tr>
-    <th width="400px">Code</th>
-    <th>Link</th>
+    <th width="400px">Versiyon</th>
+    <th>İndir</th>
   </tr>
   <tr>
 </table>
