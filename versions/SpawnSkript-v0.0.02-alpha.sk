@@ -1,0 +1,17 @@
+options:
+	prefix: &e&lMNBG&6&lNW &8&l»
+
+command /spawn [<text>]:
+	executable by: players
+	trigger:
+		if arg-1 is set:
+			if arg-1 is "ayarla":
+				if player has permission "spawn.admin":
+					set {spawn} to location of player
+				else:
+					send "{@prefix} &cBu komutu kullanabilmek için gereken yetkiye sahip değilsin!" to player
+			else:
+				send "{@prefix} &cBu komutta Argument değerini yanlış girdin!" to player
+		else:
+			teleport player to {spawn}:
+			send "{@prefix} &aBaşarıyla Doğma noktası ayarlandı." to players

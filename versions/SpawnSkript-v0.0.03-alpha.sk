@@ -1,0 +1,45 @@
+options:
+	prefix: &e&lMNBG&6&lNW &8&l»
+
+	spawn-delay: true #true/false
+	spawn-delay-value: 10 #seconds
+
+command /spawn [<text>]:
+	executable by: players
+	trigger:
+		if arg-1 is set:
+			if arg-1 is "ayarla":
+				if player has permission "spawn.admin":
+					set {spawn} to location of player
+					send "{@prefix} &aBaşarıyla Doğma noktası ayarlandı!" to player
+				else:
+					send "{@prefix} &cBu komutu kullanabilmek için gereken yetkiye sahip değilsin!" to player
+			else:
+				send "{@prefix} &cBu komutta Argument değerini yanlış girdin!" to player
+		else:
+			if {@spawn-delay} is false:
+				spawnWithoutTime(player)
+			else:
+				spawnWithTime(player, {@spawn-delay-value})
+
+on join:
+	teleport player to {spawn}
+
+on respawn:
+	teleport player to {spawn}
+
+function spawnWithoutTime(player: player):
+	teleport {_player} to {spawn}
+	send "&aBaşarıyla Doğma noktasına ışınlandın!" to {_player}
+
+function spawnWithTime(player: player, time: integer):
+	set {countdownTimer::%{_player}%} to {_time} + 1
+	while {countdownTimer::%{_player}%} > 0:
+		subtract 1 from {countdownTimer::%{_player}%}
+		if {countdownTimer::%{_player}%} is equal to 0:
+			teleport {_player} to {spawn}
+			send "{@prefix} &aBaşarıyla Doğma noktasına ışınlandın." to {_player}
+			exit
+		else:
+			send "{@prefix} &eDoğma noktasına ışınlanmana &b%{countdownTimer::%{_player}%}% &esaniye kaldı." to {_player}
+			wait 1 seconds

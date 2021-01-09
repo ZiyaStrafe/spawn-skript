@@ -1,0 +1,10 @@
+command /spawn:
+	trigger:
+		teleport player to {spawn}
+
+command /setspawn:
+	permission: spawn.admin
+	permission message: &4&lUYARI &8&l» &cBu Komutu kullanabilmek için Gerekli İzne Sahip değilsin!
+	trigger:
+		set {spawn} to location of player
+		send "&aBaşarıyla Spawn Noktası ayarlandı." to player
