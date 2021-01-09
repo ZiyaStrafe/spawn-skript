@@ -7,4 +7,4 @@ command /setspawn:
 	permission message: &4&lUYARI &8&l» &cBu Komutu kullanabilmek için Gerekli İzne Sahip değilsin!
 	trigger:
 		set {spawn} to location of player
-		send "&aBaşarıyla Spawn Noktası ayarlandı." to player
+		send "&aBaşarıyla Spawn noktası ayarlandı." to player
