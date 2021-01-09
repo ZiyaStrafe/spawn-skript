@@ -15,7 +15,7 @@ command /spawn [<text>]:
 				else:
 					send "{@prefix} &cBu komutu kullanabilmek için gereken yetkiye sahip değilsin!" to player
 			else:
-				send "{@prefix} &cBu komutta Argument değerini yanlış girdin!" to player
+				send "{@prefix} &cBu komutta argument değerini yanlış girdin!" to player
 		else:
 			if {@spawn-delay} is false:
 				spawnWithoutTime(player)
