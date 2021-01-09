@@ -11,7 +11,7 @@ command /spawn [<text>]:
 			if arg-1 is "ayarla":
 				if player has permission "spawn.admin":
 					set {spawn} to location of player
-					send "{@prefix} &aBaşarıyla Doğma noktası ayarlandı!" to player
+					send "{@prefix} &aBaşarıyla Doğma noktası ayarlandı." to player
 				else:
 					send "{@prefix} &cBu komutu kullanabilmek için gereken yetkiye sahip değilsin!" to player
 			else:
