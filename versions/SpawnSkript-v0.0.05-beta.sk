@@ -1,0 +1,95 @@
+variables:
+	{onDelay::%player%} = true
+
+options:
+	# Sunucu ön mesaj ayarları
+	prefix: &e&lMNBG&6&lNW &8&l»
+
+	# Komut ayarları
+	command-name: spawn
+
+	command-arg1-name: ayarla
+	command-arg1-permission: spawn.admin
+
+	# Spawn bekleyiş ayarları
+	spawn-delay: true #true/false
+	spawn-delay-value: 10 #seconds
+
+	on-move-delay: true #true/false
+
+	# Düşüş ayarları
+	on-void-default: false
+
+	on-void-teleport-y: 0
+
+command /{@command-name} [<text>]:
+	executable by: players
+	trigger:
+		if arg-1 is set:
+			if arg-1 is "{@command-arg1-name}":
+				if player has permission "{@command-arg1-permission}":
+					set {spawn} to location of player
+					send "{@prefix} &aBaşarıyla Doğma noktası ayarlandı." to player
+				else:
+					send "{@prefix} &cBu komutu kullanabilmek için gereken yetkiye sahip değilsin!" to player
+			else:
+				send "{@prefix} &cBu komutta argument değerini yanlış girdin!" to player
+		else:
+			if {@spawn-delay} is false:
+				spawnWithoutTime(player)
+			else:
+				spawnWithTime(player, {@spawn-delay-value})
+
+on join:
+	teleport player to {spawn}
+	wait 1 seconds
+	send "{@prefix} &aBaşarıyla oyuna katıldıktan sonra Doğma noktasına ışınlandın." to player
+
+on damage:
+	if {@on-void-default} is false:
+		if y-coordinate of victim is below 0:
+			cancel event
+
+on respawn:
+	teleport player to {spawn}
+	send "{@prefix} &aBaşarıyla öldükten sonra Doğma noktasına ışınlandın." to player
+
+on any move:
+	if {@on-void-default} is false:
+		if y-coordinate of player is below {@on-void-teleport-y}:
+			teleport player to {spawn}
+	if {@on-move-delay} is false:
+		if {onDelay::%player%} is true:
+			set {onDelay::%player%} to false
+
+function spawnWithoutTime(player: player):
+	teleport {_player} to {spawn}
+	send "{@prefix} &aBaşarıyla Doğma noktasına ışınlandın." to {_player}
+
+function spawnWithTime(player: player, time: integer):
+	if {@on-move-delay} is false:
+		set {onDelay::%{_player}%} to true
+	set {countdownTimer::%{_player}%} to {_time} + 1
+	while {countdownTimer::%{_player}%} > 0:
+		subtract 1 from {countdownTimer::%{_player}%}
+		if {countdownTimer::%{_player}%} is equal to 0:
+			if {@on-move-delay} is true:
+				send "{@prefix} &aBaşarıyla Doğma noktasına ışınlandın." to {_player}
+				teleport {_player} to {spawn}
+			else:
+				if {onDelay::%{_player}%} is true:
+					send "{@prefix} &aBaşarıyla Doğma noktasına ışınlandın." to {_player}
+					teleport {_player} to {spawn}
+				else:
+					send "{@prefix} &cDoğma noktasına ışınlanma isteği haraket ettiğin için iptal edildi!" to {_player}
+			exit
+		else:
+			if {@on-move-delay} is true:
+				send "{@prefix} &eDoğma noktasına ışınlanmana &b%{countdownTimer::%{_player}%}% &esaniye kaldı." to {_player}
+			else:
+				if {onDelay::%{_player}%} is true:
+					send "{@prefix} &eDoğma noktasına ışınlanmana &b%{countdownTimer::%{_player}%}% &esaniye kaldı." to {_player}
+				else:
+					send "{@prefix} &cDoğma noktasına ışınlanma isteği haraket ettiğin için iptal edildi!" to {_player}
+					exit
+			wait 1 seconds
